@@ -1,68 +1,93 @@
 import React, { useState } from "react";
 import "../css/Header.css";
-import { CiShoppingBasket } from "react-icons/ci";
-import { CiLight } from "react-icons/ci";
-import { FaMoon } from "react-icons/fa";
+import { FiShoppingCart, FiMenu, FiSearch } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import Badge from "@mui/material/Badge";
 import { useDispatch, useSelector } from "react-redux";
 import { setDrawer } from "../redux/slices/basketSlice";
 
 function Header() {
-  const [theme, setTheme] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
-
   const { products } = useSelector((store) => store.basket);
-  const changeTheme = () => {
-    const root = document.getElementById("root");
-    if (theme) {
-      root.style.backgroundColor = "black";
-      root.style.color = "#fff";
-    } else {
-      root.style.backgroundColor = "#fff";
-      root.style.color = "black";
-    }
-    setTheme(!theme);
-  };
+
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "Categories", path: "/categories" },
+    { name: "New Arrivals", path: "/new", highlight: true },
+    { name: "Contact", path: "/contact" },
+  ];
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-      }}
-    >
-      <div className="flex-row" onClick={() => navigate("/")}>
-        <img className="logo" src="./src/images/logo.png" />
-        <p className="logo-text">E Commerce</p>
+    <header className="modern-header">
+      <div className="header-top-bar">
+        <p>✨ Free shipping on orders over $50 | Limited time offer!</p>
       </div>
 
-      <div className="flex-row">
-        <input
-          className="search-input"
-          type="text"
-          placeholder="Bir şeyler ara"
-        />
-        <div>
-          {theme ? (
-            <FaMoon className="icon" onClick={changeTheme} />
-          ) : (
-            <CiLight className="icon" onClick={changeTheme} />
-          )}
-          <Badge
-            onClick={() => dispatch(setDrawer())}
-            badgeContent={products.length}
-            color="error"
-          >
-            <CiShoppingBasket style={{ marginRight: "6px" }} className="icon" />
-          </Badge>
+      <div className="header-container">
+        <div className="logo-container" onClick={() => navigate("/")}>
+          <img
+            className="logo"
+            src="./src/images/logo.png"
+            alt="E Commerce Logo"
+          />
+          <p className="logo-text">TrendBazaar</p>
         </div>
+
+        <div className={`nav-container ${mobileMenuOpen ? "open" : ""}`}>
+          <nav className="main-nav">
+            <ul className="nav-list">
+              {navItems.map((item) => (
+                <li
+                  key={item.name}
+                  className={`nav-item ${item.highlight ? "highlight" : ""}`}
+                >
+                  <a href={item.path} className="nav-link">
+                    {item.name}
+                    {item.highlight && (
+                      <span className="highlight-pulse"></span>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="search-actions-container">
+            <div className="search-container">
+              <FiSearch className="search-icon" />
+              <input
+                className="search-input"
+                type="text"
+                placeholder="Search for products..."
+              />
+            </div>
+
+            <div className="actions-container">
+              <Badge
+                onClick={() => dispatch(setDrawer())}
+                badgeContent={products.length}
+                color="primary"
+                className="cart-badge"
+              >
+                <button className="cart-button">
+                  <FiShoppingCart />
+                  <span className="cart-text">Cart</span>
+                </button>
+              </Badge>
+            </div>
+          </div>
+        </div>
+
+        <button
+          className="mobile-menu-toggle"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          <FiMenu />
+        </button>
       </div>
-    </div>
+    </header>
   );
 }
 
