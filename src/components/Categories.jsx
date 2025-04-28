@@ -16,7 +16,6 @@ function Categories() {
       });
   }, []);
 
-  // Kategori ikonları ve renkleri
   const categoryData = {
     electronics: { icon: "📱", color: "#3b82f6" },
     jewelery: { icon: "💎", color: "#f59e0b" },

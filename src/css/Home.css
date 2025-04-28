@@ -1,11 +1,10 @@
-/* Home.css */
 .modern-home {
     max-width: 100%;
     overflow-x: hidden;
     color: #333;
   }
   
-  /* Interactive Hero */
+
   .interactive-hero {
     display: flex;
     min-height: 80vh;
@@ -127,8 +126,7 @@
     bottom: 10%;
     left: 30%;
   }
-  
-  /* Story Cards */
+
   .story-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -193,7 +191,7 @@
     gap: 5px;
   }
   
-  /* Unique Experiences */
+
   .unique-experiences {
     padding: 5%;
     text-align: center;
@@ -244,7 +242,6 @@
     margin-top: 1rem;
   }
   
-  /* Motion Banner */
   .motion-banner {
     background: #f9f9f9;
     padding: 5rem 5%;
@@ -298,7 +295,7 @@
     object-fit: cover;
   }
   
-  /* Responsive */
+
   @media (max-width: 768px) {
     .interactive-hero {
       flex-direction: column;

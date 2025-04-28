@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "../css/Home.css";
 
 function Home() {
-  // Hikaye kartları
   const storyCards = [
     {
       title: "Sürdürülebilir Moda",
@@ -26,7 +25,6 @@ function Home() {
     },
   ];
 
-  // Deneyimler
   const experiences = [
     {
       title: "Kişiselleştirilmiş Alışveriş",
@@ -47,7 +45,6 @@ function Home() {
 
   return (
     <div className="modern-home">
-      {/* Etkileyici Hero Bölümü */}
       <section className="interactive-hero">
         <div className="hero-content">
           <h1>
@@ -77,7 +74,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Hikaye Kartları */}
       <section className="story-cards">
         {storyCards.map((card, index) => (
           <div
@@ -99,7 +95,6 @@ function Home() {
         ))}
       </section>
 
-      {/* Benzersiz Deneyimler */}
       <section className="unique-experiences">
         <h2 className="section-title">
           Eşsiz <span>Deneyimler</span>
@@ -118,7 +113,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Hareketli Banner */}
       <section className="motion-banner">
         <div className="banner-text">
           <h2>

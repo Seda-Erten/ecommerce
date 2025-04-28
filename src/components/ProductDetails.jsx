@@ -1,86 +1,64 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom'
-import { setSelectedProduct } from '../redux/slices/productSlice';
-import { CiCirclePlus } from "react-icons/ci";
-import { CiCircleMinus } from "react-icons/ci";
-import { addToBasket, calculateBasket } from '../redux/slices/basketSlice';
-
-
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToBasket } from "../redux/slices/basketSlice";
+import "../css/ProductDetails.css";
 
 function ProductDetails() {
-    const { id } = useParams();
-    const { products, selectedProduct } = useSelector((store) => store.product)
+  const { productId } = useParams();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
 
-    const { price, image, title, description } = selectedProduct;
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
 
-    const [count, setCount] = useState(0);
+    fetch(`https://fakestoreapi.com/products/${productId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setProduct(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError("Bir hata oluştu, lütfen tekrar deneyin.");
+        setLoading(false);
+      });
+  }, [productId]);
 
-    const dispatch = useDispatch();
+  const handleAddToBasket = () => {
+    const payload = {
+      id: product.id,
+      price: product.price,
+      image: product.image,
+      title: product.title,
+      description: product.description,
+      count: 1,
+    };
 
-    const increment = () => {
-        setCount(count + 1)
-    }
+    dispatch(addToBasket(payload));
+  };
 
-    const decrement = () => {
-        setCount(count - 1)
-    }
+  if (loading) {
+    return <div>Yükleniyor...</div>;
+  }
 
-    const addBasket = () => {
-        const payload = {
-            id,
-            price,
-            image,
-            title,
-            description,
-            count
-        }
+  if (error) {
+    return <div>{error}</div>;
+  }
 
-        dispatch(addToBasket(payload));
-        dispatch(calculateBasket());
-    }
-
-
-    useEffect(() => {
-        getProductById();
-    }, [])
-
-    const getProductById = () => {
-        products && products.map((product) => {
-            if (product.id == id) {
-                dispatch(setSelectedProduct(product));
-            }
-        })
-    }
-    return (
-        <div style={{ marginTop: '30px', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
-            <div style={{ marginRight: '40px' }}>
-                <img src={image} width={300} height={500} alt="" />
-            </div>
-            <div>
-                <h1 style={{ fontFamily: 'arial' }}>{title}</h1>
-                <p style={{ fontFamily: 'arial', fontSize: '20px' }}>{description}</p>
-                <h1 style={{ fontSize: '50px', fontFamily: 'arial', fontWeight: 'bold', color: 'rgb(185, 76, 76)' }}>{price}₺</h1>
-
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <CiCirclePlus onClick={increment} style={{ fontSize: '40px', marginRight: '15px' }} /> <span style={{ fontSize: '35px' }}>{count}</span> <CiCircleMinus onClick={decrement} style={{ fontSize: '40px', marginLeft: '15px' }} />
-                </div>
-
-                <div>
-                    <button
-                        onClick={addBasket}
-                        style={{
-                            marginTop: '25px',
-                            border: 'none',
-                            padding: '10px',
-                            backgroundColor: 'rgb(185, 76, 76)',
-                            color: '#fff',
-                            borderRadius: '5px'
-                        }}>Sepete Ekle</button>
-                </div>
-            </div>
-        </div>
-    )
+  return (
+    <div className="product-details-container">
+      <img src={product.image} alt={product.title} className="product-image" />
+      <h3 className="product-title">{product.title}</h3>
+      <p className="product-description">{product.description}</p>
+      <p className="product-price">${product.price}</p>
+      <button className="add-to-basket-button" onClick={handleAddToBasket}>
+        Sepete Ekle
+      </button>
+    </div>
+  );
 }
 
-export default ProductDetails
+export default ProductDetails;

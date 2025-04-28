@@ -7,7 +7,11 @@ import RouterConfig from "./config/RouterConfig";
 import Loading from "./components/Loading";
 import Drawer from "@mui/material/Drawer";
 import { useDispatch, useSelector } from "react-redux";
-import { calculateBasket, setDrawer } from "./redux/slices/basketSlice";
+import {
+  removeFromBasket,
+  calculateBasket,
+  setDrawer,
+} from "./redux/slices/basketSlice";
 import Footer from "./components/Footer";
 
 function App() {
@@ -65,6 +69,10 @@ function App() {
                         border: "none",
                         color: "#fff",
                         width: "50px",
+                      }}
+                      onClick={() => {
+                        dispatch(removeFromBasket(product.id));
+                        dispatch(calculateBasket());
                       }}
                     >
                       sil

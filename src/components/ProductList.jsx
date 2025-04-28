@@ -1,26 +1,22 @@
-import React from 'react'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getAllProducts } from '../redux/slices/productSlice';
-import Product from './Product';
+import React, { useEffect, useState } from "react";
+import Product from "./Product";
 
 function ProductList() {
+  const [products, setProducts] = useState([]);
 
-    const dispatch = useDispatch();
-    const { products } = useSelector((store) => store.product);
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
 
-    useEffect(() => {
-        dispatch(getAllProducts())
-    }, [])
-    return (
-        <div className='flex-row' style={{ flexWrap: 'wrap', marginTop: '25px' }}>
-            {
-                products && products.map((product) => (
-                    <Product key={product.id} product={product} />
-                ))
-            }
-        </div>
-    )
+  return (
+    <div className="product-list">
+      {products.map((product) => (
+        <Product key={product.id} product={product} />
+      ))}
+    </div>
+  );
 }
 
-export default ProductList
+export default ProductList;
