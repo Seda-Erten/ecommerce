@@ -2,7 +2,7 @@
 
 /* Base Styles */
 .modern-header {
-    background: linear-gradient(135deg,  #ff4d4d 0%,  #ff4d4d 100%);
+    background: linear-gradient(135deg, #2E8B57 0%,  #2E8B57 100%);
     
     top: 0;
     z-index: 1000;
@@ -11,8 +11,8 @@
   }
   
   .header-top-bar {
-    background: linear-gradient(to right, #e0dcdc, #ece9e9);
-    color:  #ff4d4d;
+    background: linear-gradient(to right,#F5F5DC, #F5F5DC);
+    color:  #2E8B57;
     text-align: center;
     padding: 2px 20px;
     font-size: 14px;
@@ -51,16 +51,16 @@
   }
   
   .logo-text {
-  
-    color: #6c757d;
+    color: #F5F5DC;
     margin: -5px;
     letter-spacing: 0.5px;
-    background: linear-gradient(to right, #474b4e, #474b4e);
+    background: linear-gradient(to right, #F5F5DC, #F5F5DC);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-weight: 700; 
   }
   
- /* Modern Navigation Styles */
+  
 .nav-container {
     display: flex;
     align-items: center;
@@ -86,7 +86,7 @@
   
   .nav-link {
     text-decoration: none;
-    color: #6c757d;
+    color: #2E8B57;
     font-weight: 500;
     font-size: 15px;
     padding: 10px 20px;
@@ -109,7 +109,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+    background: linear-gradient(135deg, #2E8B57 0%, #2E8B57 100%);
     border-radius: 50px;
     z-index: 0;
     transform: scale(0.9);
@@ -125,26 +125,27 @@
   
   .highlight .nav-link {
     font-weight: 600;
-    color:  #ff4d4d;
+    color:  #2E8B57;
   }
   
-  .highlight .nav-link::after {
+  .highlight .nav-link::before {
     content: '';
     position: absolute;
     bottom: 5px;
     left: 20px;
     width: calc(100% - 40px);
     height: 2px;
-    background: #f72585;
+    background: linear-gradient(135deg, #2E8B57 0%, #2E8B57 100%);
     border-radius: 2px;
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.4s ease;
   }
   
-  .highlight:hover .nav-link::after {
-    transform: scaleX(1);
-    transform-origin: left;
+  .highlight:hover .nav-link::before,
+  .nav-link.active::before {
+    opacity: 1;
+    transform: scale(1);
   }
   
   .highlight-pulse {
@@ -153,16 +154,16 @@
     right: 15px;
     width: 6px;
     height: 6px;
-    background-color: #f72585;
+    background-color: #2E8B57;
     border-radius: 50%;
-    box-shadow: 0 0 0 0 rgba(247, 37, 133, 0.7);
+    box-shadow: 0 0 0 0#2E8B57;
     animation: pulse 2s infinite;
   }
   
   @keyframes pulse {
     0% {
       transform: scale(0.95);
-      box-shadow: 0 0 0 0 rgba(247, 37, 133, 0.7);
+      box-shadow: 0 0 0 0 #2E8B57;
     }
     70% {
       transform: scale(1.1);
@@ -174,12 +175,12 @@
     }
   }
   
-  /* Active State */
+  
   .nav-item.active {
     transform: translateY(-2px);
   }
   
-  /* Search and Actions */
+ 
   .search-actions-container {
     display: flex;
     align-items: center;
@@ -195,7 +196,7 @@
   .search-icon {
     position: absolute;
     left: 15px;
-    color: #6c757d;
+    color: #2E8B57;
   }
   
   .search-input {
@@ -207,11 +208,11 @@
     width: 220px;
     background-color: #f8f9fa;
     border-radius: 30px;
-    color: #495057;
+    color: #2E8B57;
   }
   
   .search-input:focus {
-    border-color: #4361ee;
+    border-color: black;
     background-color: white;
     box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
   }
@@ -223,12 +224,12 @@
   }
   
   .cart-button {
-    background: linear-gradient(to right, #4361ee, #3a0ca3);
+    background: linear-gradient(to right,#F5F5DC, #F5F5DC);
     border: none;
     cursor: pointer;
     padding: 10px 20px;
     font-size: 16px;
-    color: white;
+    color: #2E8B57;
     transition: all 0.3s ease;
     border-radius: 30px;
     display: flex;
@@ -252,21 +253,20 @@
     right: 5px;
   }
   
-  /* Mobile Menu */
+
   .mobile-menu-toggle {
     display: none;
-    background: linear-gradient(to right, #4361ee, #3a0ca3);
+    background: linear-gradient(to right, #FFD700, #FFD700);
     border: none;
     font-size: 20px;
     cursor: pointer;
-    color: white;
+    color: #2E8B57;
     z-index: 1001;
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   }
-  
-  /* Responsive */
+
   @media (max-width: 992px) {
     .nav-container {
       position: fixed;

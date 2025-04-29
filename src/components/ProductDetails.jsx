@@ -9,6 +9,7 @@ function ProductDetails() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,7 +35,7 @@ function ProductDetails() {
       image: product.image,
       title: product.title,
       description: product.description,
-      count: 1,
+      count: quantity,
     };
 
     dispatch(addToBasket(payload));
@@ -54,6 +55,23 @@ function ProductDetails() {
       <h3 className="product-title">{product.title}</h3>
       <p className="product-description">{product.description}</p>
       <p className="product-price">${product.price}</p>
+
+      <div className="quantity-container">
+        <button
+          onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
+          className="quantity-button"
+        >
+          -
+        </button>
+        <span className="quantity-text">{quantity}</span>
+        <button
+          onClick={() => setQuantity((prev) => prev + 1)}
+          className="quantity-button"
+        >
+          +
+        </button>
+      </div>
+
       <button className="add-to-basket-button" onClick={handleAddToBasket}>
         Sepete Ekle
       </button>

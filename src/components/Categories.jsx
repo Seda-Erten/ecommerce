@@ -26,8 +26,8 @@ function Categories() {
   return (
     <div className="modern-categories">
       <div className="categories-header">
-        <h1>Keşfetmeye Hazır Mısınız?</h1>
-        <p>Favori kategorilerinizi keşfedin ve benzersiz ürünlerle tanışın</p>
+        <h1>Ready to Explore?</h1>
+        <p>Discover your favorite categories and meet unique products</p>
       </div>
 
       {isLoading ? (
@@ -58,7 +58,7 @@ function Categories() {
                     .join(" ")}
                 </h3>
                 <span className="explore-link">
-                  Keşfet <FiChevronRight />
+                  Explore <FiChevronRight />
                 </span>
               </div>
               <div className="category-hover-effect"></div>
@@ -68,9 +68,9 @@ function Categories() {
       )}
 
       <div className="categories-cta">
-        <h2>İlham Almaya Devam Edin</h2>
-        <p>Yeni gelen ürünler ve özel koleksiyonlar için bizi takip edin</p>
-        <button className="cta-button">Yeni Ürünleri Gör</button>
+        <h2>Keep Getting Inspired</h2>
+        <p>Follow us for new arrivals and exclusive collections</p>
+        <button className="cta-button">See New Products</button>
       </div>
     </div>
   );

@@ -70,13 +70,13 @@ function CategoryPage() {
               className="product-button"
               onClick={() => handleAddToBasket(product)}
             >
-              Sepete Ekle
+              Add to Cart
             </button>
             <button
               className="product-button"
               onClick={() => handleViewDetails(product.id)}
             >
-              Detaya Git
+              View Details
             </button>
           </div>
         ))}

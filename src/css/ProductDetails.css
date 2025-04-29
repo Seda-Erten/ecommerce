@@ -26,14 +26,37 @@
     color: #007bff;
   }
   
-  .add-to-basket-button {
-    background-color: rgb(185, 76, 76);
+  .quantity-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+  }
+  
+  .quantity-button {
+    padding: 8px 15px;
+    margin: 0 10px;
+    background-color: #2E8B57;
     color: white;
     border: none;
-    padding: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .quantity-text {
+    font-size: 20px;
+    width: 40px;
+    text-align: center;
+  }
+  
+  .add-to-basket-button {
+    padding: 10px 20px;
+    background-color: #2E8B57;
+    color: white;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
     margin-top: 20px;
   }
   

@@ -32,7 +32,7 @@ function Header() {
             src="./src/images/logo.png"
             alt="E Commerce Logo"
           />
-          <p className="logo-text">TrendBazaar</p>
+          <p className="logo-text">Shopfinity</p>
         </div>
 
         <div className={`nav-container ${mobileMenuOpen ? "open" : ""}`}>
